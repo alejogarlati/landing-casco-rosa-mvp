@@ -2,11 +2,10 @@ import Link from "next/link";
 import { Heart, Instagram, Mail, Phone } from "lucide-react";
 
 const FOOTER_LINKS = [
-  { href: "#servicios", label: "Qué Hacemos" },
-  { href: "#impacto", label: "Impacto" },
-  { href: "#empresas", label: "Aliados" },
-  { href: "#agenda", label: "Agenda" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/quienes-somos", label: "Quiénes Somos" },
+  { href: "/que-hacemos", label: "Qué Hacemos" },
+  { href: "/casos", label: "Historias" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export const Footer = () => {
