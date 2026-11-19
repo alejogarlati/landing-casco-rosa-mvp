@@ -44,6 +44,7 @@ const AwarenessRibbon = () => (
 export const Hero = () => {
   return (
     <section
+      id="hero"
       className="relative pt-28 pb-16 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-br from-pink-500 via-pink-400 to-rose-500"
       aria-label="Sección principal"
     >

@@ -50,14 +50,16 @@ export const ContactForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const subject = encodeURIComponent(`Contacto Web — ${formData.name.trim()}`);
+    const body = encodeURIComponent(
+      `Nombre: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\n${formData.message.trim()}`
+    );
+    window.location.href = `mailto:contacto@elcascorosa.org?subject=${subject}&body=${body}`;
 
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -132,10 +134,18 @@ export const ContactForm = () => {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    ¡Mensaje Enviado!
+                    Se abrió tu aplicación de correo
                   </h3>
                   <p className="text-gray-600 mb-6 max-w-sm">
-                    Gracias por contactarnos. Te responderemos a la brevedad.
+                    Completá el envío desde tu cliente de correo. Si no se abrió,
+                    escribinos directo a{" "}
+                    <a
+                      href="mailto:contacto@elcascorosa.org"
+                      className="text-primary font-medium underline"
+                    >
+                      contacto@elcascorosa.org
+                    </a>
+                    .
                   </p>
                   <Button
                     onClick={() => setIsSuccess(false)}

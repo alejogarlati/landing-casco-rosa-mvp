@@ -111,7 +111,7 @@ export const Footer = () => {
             />{" "}
             por{" "}
             <a
-              href="https://nuven.dev"
+              href="https://nuven.com.ar"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"

@@ -14,20 +14,16 @@ const NAV_LINKS = [
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openPath, setOpenPath] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isOpen = openPath === pathname;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   const isHome = pathname === "/";
 
@@ -113,7 +109,7 @@ export const Navbar = () => {
                 ? "text-gray-600 hover:text-primary"
                 : "text-white/80 hover:text-white"
             }`}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setOpenPath(isOpen ? null : pathname)}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -136,6 +132,7 @@ export const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => setOpenPath(null)}
                 className={`text-lg font-medium transition-colors py-2 border-b border-gray-50 ${
                   isActive ? "text-primary" : "text-gray-700 hover:text-primary"
                 }`}
@@ -145,7 +142,7 @@ export const Navbar = () => {
             );
           })}
           <div className="mt-4">
-            <Link href="/#hero">
+            <Link href="/#hero" onClick={() => setOpenPath(null)}>
               <Button className="w-full justify-center text-lg h-12 cursor-pointer">
                 Donar ahora
               </Button>
